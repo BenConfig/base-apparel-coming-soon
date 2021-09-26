@@ -15,10 +15,10 @@ Users should be able to:
 ## Screenshots
 
 ### Mobile
-![](screenshot-mobile.jpg)
+![](screenshot-mobile.png)
 
 ### Desktop
-![](screenshot-desktop.jpg)
+![](screenshot-desktop.png)
 
 ## Built with
 
