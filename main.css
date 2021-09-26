@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;400;600&display=swap');
+
+:root {
+    --clr-desaturated-red: hsl(0, 36%, 70%);
+    --clr-soft-red: hsl(0, 93%, 68%);
+    --clr-dark-grayish-red: hsl(0, 6%, 24%);
+    --clr-body-gradient: linear-gradient(135deg, hsl(0, 0%, 100%), hsl(0, 100%, 98%));
+    --clr-btn-gradient: linear-gradient(135deg, hsl(0, 80%, 86%), hsl(0, 74%, 74%));
+
+    --fw-lighter: 200;
+    --fw-normal: 400;
+    --fw-bold: 600;
+}
+
+* { box-sizing: border-box; }
+
+body,
+h1, p,
+input,
+button { margin: 0; }
+
+.sr-only {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+body {
+    min-height: 100vh;
+    font: var(--fw-normal) clamp(.875rem, 3vw, 1rem)/1.6 'Josefin Sans', sans-serif;
+    text-align: center;
+    padding-bottom: 4.5rem;
+    background: var(--clr-body-gradient);
+}
+
+header { 
+    padding: clamp(2rem, 8vw, 3rem) 2rem;
+}
+
+.logo-img { width: clamp(6.25rem, 25vw, 9.875rem); }
+
+header,
+main { 
+    max-width: 35rem;
+    margin: auto;
+}
+
+main > *:not(.hero-img-mobile) { margin-inline: 2rem; }
+
+.hero-img-mobile {
+    width: 100%;
+    margin-bottom: 4rem;
+}
+
+.hero-img-desktop { display: none; }
+
+.heading {
+    font-size: clamp(2.5rem, 10vw, 3.875rem);
+    line-height: 1.075;
+    letter-spacing: .26em;
+    word-spacing: 100vw;
+    text-transform: uppercase;
+    margin-bottom: clamp(.75rem, 10vw, 1.125rem);
+    color: hsl(0, 6%, 24%);
+}
+
+.heading::first-line {
+    font-weight: var(--fw-lighter);
+    color: var(--clr-desaturated-red);
+}
+
+.paragraph {
+    margin-bottom: 2rem;
+    color: var(--clr-desaturated-red);
+    opacity: .8;
+}
+
+.form {
+    --padding-left: clamp(1.5rem, 7.5%, 2rem);
+    --btn-width: clamp(4rem, 25vw - 2rem, 6.375rem);
+    position: relative;
+    border: 1px solid var(--clr-desaturated-red);
+    border-radius: 100vmax;
+}
+
+.email {
+    width: 100%;
+    min-height: 44px; /* Accessibility Requirement */
+    font: inherit;
+    padding: .9375em calc(var(--btn-width) + 1rem) .8125em var(--padding-left);
+    border: none;
+    border-radius: inherit;
+    color: var(--clr-dark-grayish-red);
+    background: transparent;
+}
+
+.email::placeholder { 
+    color: var(--clr-desaturated-red);
+    opacity: .4;
+}
+
+.btn {
+    position: absolute;
+    inset: -1px;
+    left: auto;
+    width: var(--btn-width);
+    min-height: 44px; /* Accessibility Requirement */
+    border: 0;
+    border-radius: inherit;
+    box-shadow: 0 1rem 1rem hsla(0, 36%, 70%, .35);
+    background: no-repeat url('images/icon-arrow.svg') center,
+                var(--clr-btn-gradient);
+    cursor: pointer;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    box-shadow: 0 1rem 1rem hsla(0, 36%, 70%, .35);
+    background: hsla(0, 0%, 100%, .5);
+    opacity: 0;
+    transition: opacity 250ms linear;
+}
+
+.btn:hover::after { opacity: 1; }
+
+.email:focus,
+.btn:focus { 
+    outline: 1px dashed var(--clr-dark-grayish-red);
+    outline-offset: .25rem;
+}
+
+.error-message {
+    visibility: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    font-size: .8125rem;
+    padding-top: .5em;
+    padding-left: var(--padding-left);
+    color: var(--clr-soft-red);
+    opacity: .7;
+}
+
+/* Validation error styles START */
+.error {
+    border-color: var(--clr-soft-red);
+    box-shadow: inset 0 0 0 1px var(--clr-soft-red);
+    background: url('images/icon-error.svg') no-repeat
+                center right calc(var(--btn-width) + .875rem);
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Credit to CSS Tricks - https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */
+@keyframes shake {
+    10%, 90% { transform: translate3d(-.05rem, 0, 0); }
+    20%, 80% { transform: translate3d(.1rem, 0, 0);  }
+    30%, 50%, 70% { transform: translate3d(-.2rem, 0, 0); }
+    40%, 60% { transform: translate3d(.2rem, 0, 0); }
+}
+
+.error > .email { padding-right: calc(var(--btn-width) + 3rem); }
+
+.error > .error-message { visibility: visible; }
+/* Validation error styles END */
+
+@media only screen and (min-width: 72em) and (min-height: 45em) {
+    body,
+    main {
+        display: grid;
+        grid-template-columns: 1fr 45.25%;
+        justify-items: center;
+        column-gap: min(10%, 15rem);
+    }
+
+    body {
+        grid-template-rows: auto auto;
+        text-align: left;
+        padding: 0;
+        padding-left: 5.25rem;
+        background: url('images/bg-pattern-desktop.svg') 0 / 57% 100vh no-repeat,
+                    var(--clr-body-gradient);
+    }
+
+    header,
+    main { min-width: 27.75rem; }
+
+    header {
+        grid-row: 1 / 2;
+        grid-column: 1 / 2;
+        padding: 0;
+        padding-top: 4rem;
+    }
+
+    main {
+        grid-row: 1 / -1;
+        grid-column: 1 / -1;
+        grid-template-rows: 1fr auto auto auto 1fr;
+        width: 100%;
+        max-width: none;
+    }
+
+    .hero-img-mobile { display: none; }
+
+    main > *:not(.hero-img-desktop) { max-width: 27.875rem; }
+
+    .hero-img-desktop {
+        display: block;
+        grid-row: 1 / -1;
+        grid-column: 2 / 3;
+        height: 100vh;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .heading {
+        grid-row: 2 / 3;
+        line-height: 1.125;
+        margin-top: 4.25rem;
+    }
+
+    .paragraph {
+        grid-row: 3 / 4;
+        line-height: 1.7;
+        margin-bottom: 2.625rem;
+    }
+
+    .form {
+        grid-row: 4 / 5;
+        width: 100%;
+        margin: 0;
+    }
+}
