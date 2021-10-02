@@ -58,3 +58,7 @@ In this project I noticed the background image didn't display as intended in Saf
 
 - [“Shake” CSS Keyframe Animation](https://css-tricks.com/snippets/css/shake-css-keyframe-animation/) - This animation worked perfectly for highlighting a validation error on the email input.
 - [HTML 5 Pattern Validation](https://codepen.io/tutsplus/pen/zrBKZg) - This was a great template for my JavaScript code.
+
+## Update 02/10/2021
+
+After learning about some of the aria attributes in a later project, I have included aria attributes in this project to make the form more accessible.
